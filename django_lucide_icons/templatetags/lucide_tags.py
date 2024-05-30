@@ -1,17 +1,14 @@
 import os
 import os.path
 import urllib.request
-from glob import glob
 
 from django import template
 from django.conf import settings
 from django.utils.safestring import mark_safe
 
-register = template.Library()
+from ..apps import cache
 
-cache = {}
-for file in glob(os.path.join(settings.LUCIDE_ICONS_DIR, "*.svg")):
-    cache[file.split("/")[-1].split(".")[0]] = mark_safe(open(file).read())
+register = template.Library()
 
 
 @register.simple_tag
