@@ -1,0 +1,38 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "django-lucide-icons"
+authors = [{name = "Fabian Binz", email = "fabian.binz@gmail.com"}]
+license = {file = "LICENSE"}
+classifiers = ["License :: OSI Approved :: MIT License"]
+dynamic = ["version", "description"]
+readme = "README.md"
+
+[project.urls]
+Home = "https://github.com/fbinz/django-lucide-icons"
+
+[tool.flit.module]
+name = "django_lucide_icons"
+
+
+[project.optional-dependencies]
+dev = [
+  "ruff",
+  "uv",
+  "flit"
+]
+
+[tool.ruff]
+line-length = 120
+lint.unfixable = [
+  # don't autofix unused variables and imports, since they
+  # appear frequently during development
+  "F401",
+  "F841",
+]
+exclude = ["**migrations**"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401", "F403"]
