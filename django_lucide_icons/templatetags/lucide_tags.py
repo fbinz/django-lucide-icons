@@ -32,7 +32,10 @@ def lucide(name):
             ) as file:
                 # remove the width and height attributes
                 transformed = (
-                    response.read().replace('width="24"', "").replace('height="24"', "")
+                    response.read()
+                    .decode("utf-8")
+                    .replace('width="24"', "")
+                    .replace('height="24"', "")
                 )
 
                 file.write(transformed)
