@@ -1,6 +1,8 @@
 import os
 import os.path
+import re
 import urllib.request
+import xml.etree.ElementTree as ET
 
 from django import template
 from django.conf import settings
@@ -12,8 +14,11 @@ register = template.Library()
 
 
 @register.simple_tag
-def lucide(name):
+def lucide(name, **kwargs):
     if name in cache:
+        if "class" in kwargs:
+            return cache[name].format(**{"class": kwargs["class"]})
+
         return cache[name]
 
     if settings.DEBUG:
@@ -30,13 +35,14 @@ def lucide(name):
             with open(
                 os.path.join(settings.LUCIDE_ICONS_DIR, name + ".svg"), "w"
             ) as file:
-                # remove the width and height attributes
-                transformed = (
-                    response.read()
-                    .decode("utf-8")
-                    .replace('width="24"', "")
-                    .replace('height="24"', "")
-                )
+                ET.register_namespace("temp", "http://www.w3.org/2000/svg")
+                doc = ET.fromstring(response.read().decode("utf-8"))
+
+                del doc.attrib["width"]
+                del doc.attrib["height"]
+
+                transformed = ET.tostring(doc, encoding="unicode")
+                transformed = re.sub(":?temp:?", "", transformed)
 
                 file.write(transformed)
                 cache[name] = mark_safe(transformed)
