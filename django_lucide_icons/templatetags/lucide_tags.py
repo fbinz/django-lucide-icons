@@ -17,7 +17,7 @@ register = template.Library()
 def lucide(name, **kwargs):
     if name in cache:
         if "class" in kwargs:
-            return cache[name].format(**{"class": kwargs["class"]})
+            return mark_safe(cache[name].format(**{"class": kwargs["class"]}))
 
         return cache[name]
 
@@ -40,6 +40,7 @@ def lucide(name, **kwargs):
 
                 del doc.attrib["width"]
                 del doc.attrib["height"]
+                doc.attrib["class"] = "{class}"
 
                 transformed = ET.tostring(doc, encoding="unicode")
                 transformed = re.sub(":?temp:?", "", transformed)
