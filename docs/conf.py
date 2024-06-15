@@ -25,19 +25,19 @@ settings.configure(
         "django.contrib.sessions",
         "django.contrib.messages",
         "django.contrib.staticfiles",
-        "django-lucide-icons",
+        "django_lucide_icons",
     ],
     SECRET_KEY="ASDFjklö123456890",
 )
 django.setup()
 
-from django-lucide-icons import __version__  # noqa: E402
+from django_lucide_icons import __version__  # noqa: E402
 
 # -- Project information -----------------------------------------------------
 
 project = "django-lucide-icons"
 copyright = "2024, Ambient Innovation: GmbH"  # noqa: A001
-author = "Ambient Innovation: GmbH <hello@ambient.digital>"
+author = "Fabian Binz <fabian.binz@gmail.com>"
 version = __version__
 release = __version__
 

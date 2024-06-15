@@ -6,35 +6,10 @@
 [![Documentation Status](https://readthedocs.org/projects/django-lucide-icons/badge/?version=latest)](https://django-lucide-icons.readthedocs.io/en/latest/?badge=latest)
 
 Lucide Icons for Django
-
 * [PyPI](https://pypi.org/project/django-lucide-icons/)
 * [GitHub](https://github.com/ambient-innovation/django-lucide-icons)
 * [Full documentation](https://django-lucide-icons.readthedocs.io/en/latest/index.html)
-* Creator & Maintainer: [Ambient Digital](https://ambient.digital)
-
-
-# Django Lucide Icons
-
-This is a Django template tag that allows you to use [Lucide Icons](https://lucide.dev/) in your Django templates.
-
-## Installation
-
-To install the package, simply run:
-
-```bash
-pip install django-lucide-icons
-```
-
-Then add
-
-```python
-INSTALLED_APPS = [
-    # ...
-    "lucide_icons",
-]
-```
-
-to your Django project's settings.py file.
+* Creator & Maintainer: [Fabian Binz](https://ambient.digital)
 
 ## Usage
 
@@ -49,10 +24,12 @@ The LUCIDE_ICONS_DIR variable should be set to the directory where you want to s
 Then, you can use the `lucide` template tag in your Django templates to display Lucide icons. For example, to display the "home" icon, you can use the following code:
 
 ```html
+
 {% load lucide_tags %} {% lucide "home" %}
 
 <!-- or using a class attribute -->
 {% lucide "home" class="my-class" %}
+
 ```
 
 The `lucide` template tag takes two arguments:
@@ -65,28 +42,11 @@ It returns the SVG code of the icon as a string.
 Since the plain SVG is rendered, it might make sense to wrap it in a "span" or "div" element to
 size it properly.
 Alternative approaches are welcome. Just submit an issue or a pull request.
-
-## Changelog
-
-### 0.2.0
-
-- Added support for class attributes
-
-### 0.1.0
-
-- Initial release
-
-
 ## Installation
-
 
 - Install the package via pip:
 
-  `pip install django-lucide-icons`
-
-  or via pipenv:
-
-  `pipenv install django-lucide-icons`
+  `pip install django_lucide_icons`
 
 - Add module to `INSTALLED_APPS` within the main django `settings.py`:
 
@@ -96,12 +56,6 @@ Alternative approaches are welcome. Just submit an issue or a pull request.
         'django-lucide-icons',
     )
      ````
-
-
-
-
-
-
 ## Contribute
 
 ### Setup package for development
@@ -162,6 +116,7 @@ Example: run all hooks of pre-push stage
 - To build the documentation run: `sphinx-build docs/ docs/_build/html/`.
 - Open `docs/_build/html/index.html` to see the documentation.
 
+
 ### Translation files
 
 If you have added custom text, make sure to wrap it in `_()` where `_` is
@@ -206,7 +161,6 @@ How to compile translation files:
   ```
   flit publish --repository testpypi
   ```
-
 ### Maintenance
 
 Please note that this package supports the [ambient-package-update](https://pypi.org/project/ambient-package-update/).
