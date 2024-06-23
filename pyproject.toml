@@ -56,7 +56,7 @@ name = "django_lucide_icons"
 [project.urls]
 'Homepage' = 'https://github.com/fbinz/django-lucide-icons/'
 'Documentation' = 'https://django-lucide-icons.readthedocs.io/en/latest/index.html'
-'Maintained by' = 'https://ambient.digital'
+'Maintained by' = 'https://ich.binz.dev'
 'Bugtracker' = 'https://github.com/fbinz/django-lucide-icons/issues'
 'Changelog' = 'https://django-lucide-icons.readthedocs.io/en/latest/features/changelog.html'
 
