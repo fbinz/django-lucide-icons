@@ -9,6 +9,7 @@ from ambient_package_update.metadata.ruff_ignored_inspection import (
 
 METADATA = PackageMetadata(
     package_name="django-lucide-icons",
+    module_name="django_lucide_icons",
     maintainer=PackageMaintainer(
         name="Fabian Binz",
         email="fabian.binz@gmail.com",

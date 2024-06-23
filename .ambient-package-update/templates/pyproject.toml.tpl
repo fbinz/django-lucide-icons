@@ -3,62 +3,46 @@ requires = ["flit_core>=3.4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "django-lucide-icons"
-authors = [
-    {'name' = 'Fabian Binz', 'email' = 'fabian.binz@gmail.com'},
+name = "{{ package_name }}"
+authors = [{% for author in authors %}
+    {'name' = '{{ author.name }}', 'email' = '{{ author.email }}'},{% endfor %}
 ]
 readme = "README.md"
 classifiers = [
-    "Development Status :: 5 - Production/Stable",
+    "Development Status :: {{ development_status }}",
     "Environment :: Web Environment",
-    "Framework :: Django",
-    "Framework :: Django :: 3.2",
-    "Framework :: Django :: 4.0",
-    "Framework :: Django :: 4.1",
+    "Framework :: Django",{% for django_version in supported_django_versions %}
+    "Framework :: Django :: {{ django_version }}",{% endfor %}
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: {{ license_label }}",
     "Natural Language :: English",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3",{% for python_version in supported_python_versions %}
+    "Programming Language :: Python :: {{ python_version }}",{% endfor %}
     "Topic :: Utilities",
 ]
 dynamic = ["version", "description"]
 license = {"file" = "LICENSE.md"}
-dependencies = [
-    'django >=3.2, < 6',
+dependencies = [{% for dependency in dependencies %}
+    '{{ dependency }}',{% endfor %}
 ]
 
-
-[project.optional-dependencies]
-dev = [
-   'typer~=0.9',
-   'freezegun~=1.3',
-   'pytest-django~=4.7',
-   'pytest-mock~=3.12',
-   'coverage~=7.3',
-   'pre-commit~=3.5',
-   'ruff~=0.1.7',
-   'sphinx~=7.1',
-   'sphinx-rtd-theme~=2.0',
-   'm2r2==0.3.3.post2',
-   'mistune<2.0.0',
-   'flit~=3.9',
-   'ambient-package-update~=24.6.4',
-]
+{% if optional_dependencies %}
+[project.optional-dependencies]{% for area, dependency_list in optional_dependencies.items() %}
+{{ area }} = [{% for dependency in dependency_list %}
+   '{{ dependency }}',{% endfor %}
+]{% endfor %}{% endif %}
 
 [tool.flit.module]
-name = "django_lucide_icons"
+name = "{{ module_name }}"
 
 [project.urls]
-'Homepage' = 'https://github.com/fbinz/django-lucide-icons/'
-'Documentation' = 'https://django-lucide-icons.readthedocs.io/en/latest/index.html'
-'Maintained by' = 'https://ambient.digital'
-'Bugtracker' = 'https://github.com/fbinz/django-lucide-icons/issues'
-'Changelog' = 'https://django-lucide-icons.readthedocs.io/en/latest/features/changelog.html'
+'Homepage' = 'https://github.com/fbinz/{{ package_name }}/'
+'Documentation' = 'https://{{ package_name }}.readthedocs.io/en/latest/index.html'
+'Maintained by' = '{{ maintainer.url }}'
+'Bugtracker' = 'https://github.com/fbinz/{{ package_name }}/issues'
+'Changelog' = 'https://{{ package_name }}.readthedocs.io/en/latest/features/changelog.html'
 
 [tool.ruff]
 lint.select = [
@@ -83,8 +67,8 @@ lint.select = [
     "PGH",     # No all-purpose "# noqa" and eval validation
     "PL",      # PyLint
 ]
-lint.ignore = [
-    'XYZ', # Reason why we need this exception
+lint.ignore = [{% for ruff_ignore in ruff_ignore_list %}
+    '{{ ruff_ignore.key }}', # {{ ruff_ignore.comment }}{% endfor %}
 ]
 
 # Allow autofix for all enabled rules (when `--fix`) is provided.
@@ -166,19 +150,15 @@ isolated_build = True
 
 [testenv]
 # Django deprecation overview: https://www.djangoproject.com/download/
-deps =
-    django32: Django==3.2.*
-    django40: Django==4.0.*
-    django41: Django==4.1.*
-extras = dev,
+deps ={% for django_version in supported_django_versions %}
+    django{{ django_version|replace(".", "") }}: Django=={{ django_version }}.*{% endfor %}
+extras = {% for area, dependency_list in optional_dependencies.items() %}{{ area }},{% endfor %}
 commands =
     coverage run -m pytest --ds settings tests
 
 [gh-actions]
-python =
-    3.8: py38
-    3.9: py39
-    3.10: py310
+python ={% for python_version in supported_python_versions %}
+    {{ python_version }}: py{{ python_version|replace(".", "") }}{% endfor %}
 """
 
 [tool.pytest.ini_options]
