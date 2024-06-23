@@ -29,6 +29,7 @@ classifiers = [
 dynamic = ["version", "description"]
 license = {"file" = "LICENSE.md"}
 dependencies = [
+    'django >=3.2, < 6',
 ]
 
 
@@ -50,7 +51,7 @@ dev = [
 ]
 
 [tool.flit.module]
-name = "django_lucide_icons"
+name = "django-lucide-icons"
 
 [project.urls]
 'Homepage' = 'https://github.com/ambient-innovation/django-lucide-icons/'

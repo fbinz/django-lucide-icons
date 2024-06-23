@@ -16,7 +16,7 @@ import sys
 import django
 from django.conf import settings
 
-sys.path.insert(0, os.path.abspath(".."))  # so that we can access the "django-lucide-icons" package
+sys.path.insert(0, os.path.abspath(".."))  # so that we can access the "{{ package_name }}" package
 settings.configure(
     INSTALLED_APPS=[
         "django.contrib.admin",
@@ -25,20 +25,20 @@ settings.configure(
         "django.contrib.sessions",
         "django.contrib.messages",
         "django.contrib.staticfiles",
-        "django_lucide_icons",
+        "{{ module_name }}",
     ],
     SECRET_KEY="ASDFjklö123456890",
     LUCIDE_ICONS_DIR="./icons",
 )
 django.setup()
 
-from django_lucide_icons import __version__  # noqa: E402
+from {{ module_name }} import __version__  # noqa: E402
 
 # -- Project information -----------------------------------------------------
 
-project = "django-lucide-icons"
-copyright = "2024, Ambient Innovation: GmbH"  # noqa: A001
-author = "Fabian Binz <fabian.binz@gmail.com>"
+project = "{{ package_name|replace("_", "-") }}"
+copyright = "{{ current_year }}, Ambient Innovation: GmbH"  # noqa: A001
+author = "{{ maintainer.name }} <{{ maintainer.email }}>"
 version = __version__
 release = __version__
 

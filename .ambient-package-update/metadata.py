@@ -21,11 +21,8 @@ METADATA = PackageMetadata(
         ),
     ],
     development_status="5 - Production/Stable",
-    readme_content=ReadmeContent(
-        tagline="Lucide Icons for Django",
-        content=""
-    ),
-    dependencies=[],
+    readme_content=ReadmeContent(tagline="Lucide Icons for Django", content=""),
+    dependencies=["django >=3.2, < 6"],
     optional_dependencies={
         "dev": [
             *DEV_DEPENDENCIES,
