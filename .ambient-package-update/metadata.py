@@ -23,7 +23,7 @@ METADATA = PackageMetadata(
     development_status="5 - Production/Stable",
     readme_content=ReadmeContent(
         tagline="Lucide Icons for Django",
-        content_template="snippets/usage.tpl",
+        content=""
     ),
     dependencies=[],
     optional_dependencies={

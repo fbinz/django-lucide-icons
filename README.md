@@ -6,10 +6,29 @@
 [![Documentation Status](https://readthedocs.org/projects/django-lucide-icons/badge/?version=latest)](https://django-lucide-icons.readthedocs.io/en/latest/?badge=latest)
 
 Lucide Icons for Django
+
 * [PyPI](https://pypi.org/project/django-lucide-icons/)
 * [GitHub](https://github.com/ambient-innovation/django-lucide-icons)
 * [Full documentation](https://django-lucide-icons.readthedocs.io/en/latest/index.html)
 * Creator & Maintainer: [Fabian Binz](https://ambient.digital)
+
+
+
+
+## Installation
+
+- Install the package via pip:
+
+  `pip install django-lucide-icons`
+
+- Add module to `INSTALLED_APPS` within the main django `settings.py`:
+
+    ````
+    INSTALLED_APPS = (
+        ...
+        'django_lucide_icons',
+    )
+     ````
 
 ## Usage
 
@@ -23,6 +42,7 @@ The LUCIDE_ICONS_DIR variable should be set to the directory where you want to s
 
 Then, you can use the `lucide` template tag in your Django templates to display Lucide icons. For example, to display the "home" icon, you can use the following code:
 
+
 ```html
 
 {% load lucide_tags %} {% lucide "home" %}
@@ -31,6 +51,7 @@ Then, you can use the `lucide` template tag in your Django templates to display 
 {% lucide "home" class="my-class" %}
 
 ```
+
 
 The `lucide` template tag takes two arguments:
 
@@ -42,20 +63,7 @@ It returns the SVG code of the icon as a string.
 Since the plain SVG is rendered, it might make sense to wrap it in a "span" or "div" element to
 size it properly.
 Alternative approaches are welcome. Just submit an issue or a pull request.
-## Installation
 
-- Install the package via pip:
-
-  `pip install django_lucide_icons`
-
-- Add module to `INSTALLED_APPS` within the main django `settings.py`:
-
-    ````
-    INSTALLED_APPS = (
-        ...
-        'django-lucide-icons',
-    )
-     ````
 ## Contribute
 
 ### Setup package for development
@@ -134,6 +142,7 @@ How to compile translation files:
 * `python manage.py compilemessages`
 * Have a look at the new/changed files within `django-lucide-icons/locale`
 
+
 ### Publish to ReadTheDocs.io
 
 - Fetch the latest changes in GitHub mirror and push them
@@ -161,6 +170,7 @@ How to compile translation files:
   ```
   flit publish --repository testpypi
   ```
+
 ### Maintenance
 
 Please note that this package supports the [ambient-package-update](https://pypi.org/project/ambient-package-update/).
@@ -169,3 +179,4 @@ being rendered by this updater. It works similar to well-known updaters like `py
 
 To run an update, refer to the [documentation page](https://pypi.org/project/ambient-package-update/)
 of the "ambient-package-update".
+
